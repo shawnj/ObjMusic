@@ -153,17 +153,71 @@ class Notes:
 
 class PitchSet:
 
-    def __init__(self, paramer):
-        pass
+    def __init__(self,scale,rootnote,x,y):
+        self.scale = scale
+        self.rootnote = rootnote
+        self.x = x
+        self.y = y
+    
+    def get_grid(self):
+        __notes = load_notes(self.scale,self.rootnote)
+        return populate_grid(__notes,self.x,self.y)
 
 class TimeSet:
 
-    def __init__(self, parameter_list):
+    def __init__(self,x,y,positions):
+        self.x = x
+        self.y = y
+        self.positions = list(positions)
+    
+    def get_grid(self):
+        __grid = populate_grid(self.positions,x,y)
+        return __grid
+
+class OrderSet:
+
+    def __init__(self,positions):
+        self.positions = positions
+
+    def get_grid(self):
+        __grid = populate_grid(self.positions,x,y)
+        return __grid
+
+
+class Variation:
+    
+    def __init__(self, order_table,pitch_set,time_set):
+        self.order_table = order_table
+        self.pitch_set = pitch_set
+        self.time_set = time_set
+    
+    def return_varition(pitch_table,time_table,order_table):
         pass
 
 
 ## Methods
+def populate_grid(item_list,x,y):
+    __l = []
+    inc = 0
+    index = 0
+    for p in range(8):
+        inc2 = 0
+
+        for i in range(7):
+            if i == 0:
+                inc2 = inc
+            __l.insert(index,item_list[inc])
+            inc = (inc + x - 1) % 7
+            index += 1
+
+        index += 1
+        __l.insert(index,item_list[inc2])
+        inc = (inc + y -1) % 7
+
+
+    return __l
     
+
 def load_scale(scale):
 
     __scale = Scales().get_scale(scale)
