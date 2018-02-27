@@ -180,7 +180,7 @@ def load_scale(scale):
 def load_notes(scale, rootnote):
     __ls = load_scale(scale)
     __notes = Notes().notes()
-    __root = __notes[rootnote]
+    __root = __notes[rootnote.upper()]
 
     note_num = list()
 
