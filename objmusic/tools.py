@@ -1,7 +1,7 @@
 import sys
 import os
 
-class Intervals(object):
+class Intervals:
 
     def __init__(self, I1,I2,I3,I4,I5,I6,I7):
         self.I1 = I1
@@ -12,7 +12,10 @@ class Intervals(object):
         self.I6 = I6
         self.I7 = I7
 
-class Scales(object):
+class Scales:
+
+    def __init__(self):
+        self.scale = "Major"
 
     def scales(self):
         __scales = {
@@ -120,11 +123,13 @@ class Scales(object):
 
     def get_scale(self, scale):
 
-        __scale = [x for x in self.scales().items() if scale in x]
+        self.scale = scale
 
-        return dict(__scale)[scale]
+        __scale = [x for x in self.scales().items() if self.scale in x]
 
-class Notes(object):
+        return dict(__scale)[self.scale]
+
+class Notes:
 
     def notes(self):
 
@@ -140,20 +145,62 @@ class Notes(object):
             "G#": 9,
             "A": 10,
             "A#": 11,
-            "B": 12
+            "B": 0
         }
 
         return __notes
 
-class PitchSet(object):
+
+class PitchSet:
 
     def __init__(self, paramer):
         pass
 
-class TimeSet(object):
+class TimeSet:
 
     def __init__(self, parameter_list):
         pass
+
+
+## Methods
+    
+def load_scale(scale):
+
+    __scale = Scales().get_scale(scale)
+    
+    __intervals = ""
+
+    if len(__scale) == 7:
+        __intervals = Intervals(__scale[0],__scale[1],__scale[2],__scale[3],__scale[4],__scale[5],__scale[6])
+
+    __loaded_s = __intervals 
+
+    return __loaded_s
+
+def load_notes(scale, rootnote):
+    __ls = load_scale(scale)
+    __notes = Notes().notes()
+    __root = __notes[rootnote]
+
+    note_num = list()
+
+    note_num.append(__root)
+    note_num.append((note_num[0]+__ls.I1)%12)
+    note_num.append((note_num[1]+__ls.I2)%12)
+    note_num.append((note_num[2]+__ls.I3)%12)
+    note_num.append((note_num[3]+__ls.I4)%12)
+    note_num.append((note_num[4]+__ls.I5)%12)
+    note_num.append((note_num[5]+__ls.I6)%12)
+    note_num.append((note_num[6]+__ls.I7)%12)
+
+    convert_notes = list()
+
+    for x in note_num:
+        note = [i[0] for i in __notes.items() if x in i]
+        convert_notes.append(note[0])
+
+    return convert_notes
+
 
 
 
