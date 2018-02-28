@@ -165,13 +165,13 @@ class PitchSet:
 
 class TimeSet:
 
-    def __init__(self,x,y,positions):
+    def __init__(self,positions,x,y):
         self.x = x
         self.y = y
         self.positions = list(positions)
     
     def get_grid(self):
-        __grid = populate_grid(self.positions,x,y)
+        __grid = populate_grid(self.positions,self.x,self.y)
         return __grid
 
 class OrderSet:
@@ -179,30 +179,37 @@ class OrderSet:
     def __init__(self,positions):
         self.positions = positions
 
-    def get_grid(self):
-        __grid = populate_grid(self.positions,x,y)
-        return __grid
+    def get_order(self):
+        __positions = self.positions
+        return list(__positions.split(","))
 
 
 class Variation:
     
-    def __init__(self, order_table,pitch_set,time_set):
-        self.order_table = order_table
+    def __init__(self, order_set,pitch_set,time_set):
+        self.order_set = order_set
         self.pitch_set = pitch_set
         self.time_set = time_set
     
-    def return_varition(pitch_table,time_table,order_table):
-        pass
+    def return_varition(self):
+        __var = []
 
+        for x in self.order_set:
+            p = self.pitch_set[int(x)]
+            t = self.time_set[int(x)]
+            s = str(str(p)+":"+str(t))
+            __var.append(s)
+
+        return __var
 
 ## Methods
 def populate_grid(item_list,x,y):
     __l = []
     inc = 0
     index = 0
+
     for p in range(8):
         inc2 = 0
-
         for i in range(7):
             if i == 0:
                 inc2 = inc
@@ -213,7 +220,6 @@ def populate_grid(item_list,x,y):
         index += 1
         __l.insert(index,item_list[inc2])
         inc = (inc + y -1) % 7
-
 
     return __l
     
