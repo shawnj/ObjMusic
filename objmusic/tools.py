@@ -1,5 +1,7 @@
 import sys
 import os
+import random
+import operator
 
 class Intervals:
 
@@ -170,18 +172,26 @@ class TimeSet:
         self.y = y
         self.positions = list(positions)
     
+    positions = property(operator.attrgetter('_positions'))
+    
+    @positions.setter
+    def positions(self,p):
+        if len(p) != 7: raise Exception("Length of Time inputs not 7.")
+        self._positions = p
+
     def get_grid(self):
         __grid = populate_grid(self.positions,self.x,self.y)
         return __grid
 
 class OrderSet:
 
-    def __init__(self,positions):
-        self.positions = positions
+    def __init__(self,num_notes):
+        self.num_notes = num_notes
 
     def get_order(self):
-        __positions = self.positions
-        return list(__positions.split(","))
+        __num_notes = self.num_notes
+        __r = random.sample(range(0,63), __num_notes)
+        return __r
 
 
 class Variation:
@@ -191,7 +201,7 @@ class Variation:
         self.pitch_set = pitch_set
         self.time_set = time_set
     
-    def return_varition(self):
+    def return_variation(self):
         __var = []
 
         for x in self.order_set:
