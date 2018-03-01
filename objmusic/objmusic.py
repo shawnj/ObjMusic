@@ -1,16 +1,18 @@
 from .tools import *
 import sys
+import random
 
-KEY = "C"
-SCALE = "Major"
-PITCH_X = 4
-PITCH_Y = 5
-TIME_SET = [2,4,4,8,16,16,8]
-TIME_X = 3
-TIME_Y = 4
-NUM_NOTES = 10
+def main(args):
 
-def main():
+    KEY = random.sample(["C","D","E","F","G","A"],1)[0]
+    SCALE = args[0]
+    PITCH_X = args[1]
+    PITCH_Y = args[2]
+    TIME_SET = args[3]
+    TIME_X = args[4]
+    TIME_Y = args[5]
+    NUM_NOTES = args[6]
+    
     __p = PitchSet(SCALE,KEY,PITCH_X,PITCH_Y).get_grid()
     __t = TimeSet(TIME_SET,TIME_X,TIME_Y).get_grid()
     __o = OrderSet(NUM_NOTES).get_order()
@@ -19,4 +21,4 @@ def main():
     return __v.return_variation()
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1:])

@@ -3,6 +3,8 @@ import os
 import random
 import operator
 
+from .midi import *
+
 class Intervals:
 
     def __init__(self, I1,I2,I3,I4,I5,I6,I7):
@@ -115,7 +117,7 @@ class Scales:
             "Persian": (1, 3, 1, 1, 2, 3, 1),
             "Persian Mode 2": (3, 1, 1, 2, 3, 1, 1),
             "Persian Mode 3": (1, 1, 2, 3, 1, 1, 3),
-            "Persian Mode 4": (1, 2, 3, 1, 1, 3, 1),
+            "Persian Mode 4": (1, 2, 3, 1, 1, 3, 1), 
             "Persian Mode 5": (2, 3, 1, 1, 3, 1, 1),
             "Persian Mode 6": (3, 1, 1, 3, 1, 1, 2),
             "Persian Mode 7": (1, 1, 3, 1, 1, 2, 3)
@@ -130,7 +132,27 @@ class Scales:
         __scale = [x for x in self.scales().items() if self.scale in x]
 
         return dict(__scale)[self.scale]
+class TimeValues:
 
+    def __init__(self):
+        self.tv = "One"
+
+    def tvs(self):
+        __tvs = {
+            "One": (2, 4, 2, 4, -4, 2, 4),
+            "Two": (4, 8, 4, 8, -2, 4, 8),
+            "Three": (8, 16, 8, 16, -16, 8, 16)
+        }
+
+        return __tvs
+
+    def get_tv(self, tv):
+
+        self.tv = tv
+
+        __tvs = [x for x in self.tvs().items() if self.tv in x]
+
+        return dict(__tvs)[self.tv]
 class Notes:
 
     def notes(self):
@@ -151,7 +173,6 @@ class Notes:
         }
 
         return __notes
-
 
 class PitchSet:
 
