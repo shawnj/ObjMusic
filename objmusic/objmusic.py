@@ -42,16 +42,16 @@ def transfer_midi(variation,out_path,octave):
 def main(args):
 
     #KEY = random.sample(list(Notes().notes().keys()),1)[0]
-    SCALE = args[0]
-    PITCH_X = args[1]
-    PITCH_Y = args[2]
-    TIME_SET = args[3]
-    TIME_X = args[4]
-    TIME_Y = args[5]
-    NUM_NOTES = args[6]
-    OUT_PATH = args[7]
-    OCTAVE = args[8]
-    KEY = args[9]
+    KEY = args[0]
+    SCALE = args[1]
+    PITCH_X = args[2]
+    PITCH_Y = args[3]
+    TIME_SET = args[4]
+    TIME_X = args[5]
+    TIME_Y = args[6]
+    NUM_NOTES = args[7]
+    OUT_PATH = args[8]
+    OCTAVE = args[9]
     #BPM = args[10]
     
     __p = PitchSet(SCALE,KEY,PITCH_X,PITCH_Y).get_grid()
