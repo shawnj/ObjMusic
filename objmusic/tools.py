@@ -126,9 +126,7 @@ class Scales:
         return __scales
 
     def get_scale(self, scale):
-
         self.scale = scale
-
         __scale = [x for x in self.scales().items() if self.scale in x]
 
         return dict(__scale)[self.scale]
@@ -147,16 +145,13 @@ class TimeValues:
         return __tvs
 
     def get_tv(self, tv):
-
         self.tv = tv
-
         __tvs = [x for x in self.tvs().items() if self.tv in x]
 
         return dict(__tvs)[self.tv]
 class Notes:
 
     def notes(self):
-
         __notes = {
             "C": 1,
             "C#": 2,
@@ -184,7 +179,6 @@ class MidiNotes:
 
         return __m_notes
     
-
 class PitchSet:
 
     def __init__(self,scale,rootnote,x,y):
@@ -225,7 +219,6 @@ class OrderSet:
         __num_notes = self.num_notes
         __r = random.sample(range(0,63), __num_notes)
         return __r
-
 
 class Variation:
     
@@ -268,9 +261,7 @@ def populate_grid(item_list,x,y):
     
 
 def load_scale(scale):
-
     __scale = Scales().get_scale(scale)
-    
     __intervals = ""
 
     if len(__scale) == 7:
@@ -306,7 +297,6 @@ def load_notes(scale, rootnote):
 
 def load_timevalues(timevalue):
     __tv = TimeValues().get_tv(timevalue)
-
     __loaded_tv = __tv
 
     return __loaded_tv
