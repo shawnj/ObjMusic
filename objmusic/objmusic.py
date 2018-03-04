@@ -30,7 +30,7 @@ def transfer_midi(variation,out_path,octave):
         __note = __tmp[0]
         __time = int(__tmp[1])
         
-        print (__time,__note)
+        #print (__time,__note)
         track.append(mido.Message('note_on',note=__note,velocity=__velocity, time=__time))
         track.append(mido.Message('note_off',note=__note,velocity=__velocity, time=__time))
 
