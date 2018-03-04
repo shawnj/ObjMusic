@@ -139,9 +139,9 @@ class TimeValues:
 
     def tvs(self):
         __tvs = {
-            "One": (2, 4, 2, 4, -4, 2, 4),
-            "Two": (4, 8, 4, 8, -2, 4, 8),
-            "Three": (8, 16, 8, 16, -16, 8, 16)
+            "One": (2, 4, 2, 4, 4, 2, 4),
+            "Two": (4, 8, 4, 8, 2, 4, 8),
+            "Three": (8, 16, 8, 16, 16, 8, 16)
         }
 
         return __tvs
@@ -174,6 +174,17 @@ class Notes:
 
         return __notes
 
+class MidiNotes:
+
+    def midi_notes(self):
+
+        __m_notes = {
+
+        }
+
+        return __m_notes
+    
+
 class PitchSet:
 
     def __init__(self,scale,rootnote,x,y):
@@ -188,21 +199,22 @@ class PitchSet:
 
 class TimeSet:
 
-    def __init__(self,positions,x,y):
+    def __init__(self,timevalue,x,y):
         self.x = x
         self.y = y
-        self.positions = list(positions)
+        self.timevalue = timevalue
+        #self.positions = list(positions)
     
-    positions = property(operator.attrgetter('_positions'))
+    #positions = property(operator.attrgetter('_positions'))
     
-    @positions.setter
-    def positions(self,p):
-        if len(p) != 7: raise Exception("Length of Time inputs not 7.")
-        self._positions = p
+    #@positions.setter
+    #def positions(self,p):
+    #    if len(p) != 7: raise Exception("Length of Time inputs not 7.")
+    #    self._positions = p
 
     def get_grid(self):
-        __grid = populate_grid(self.positions,self.x,self.y)
-        return __grid
+        __timevalues = load_timevalues(self.timevalue)
+        return populate_grid(__timevalues,self.x,self.y)
 
 class OrderSet:
 
@@ -292,7 +304,10 @@ def load_notes(scale, rootnote):
 
     return convert_notes
 
+def load_timevalues(timevalue):
+    __tv = TimeValues().get_tv(timevalue)
 
+    __loaded_tv = __tv
 
-
+    return __loaded_tv
 
