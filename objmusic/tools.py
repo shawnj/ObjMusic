@@ -130,6 +130,7 @@ class Scales:
         __scale = [x for x in self.scales().items() if self.scale in x]
 
         return dict(__scale)[self.scale]
+
 class TimeValues:
 
     def __init__(self):
@@ -149,6 +150,7 @@ class TimeValues:
         __tvs = [x for x in self.tvs().items() if self.tv in x]
 
         return dict(__tvs)[self.tv]
+        
 class Notes:
 
     def notes(self):
