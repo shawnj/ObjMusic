@@ -6,15 +6,16 @@ import random
 import mido
 import math
 
-def convert_midi(note,octave,tpb):
+def convert_midi(note,tpb):
+    octave = random.sample(range(3,6),1)[0]
     __retr_note = note_name_to_number(note.split(":")[0]+str(octave))
     __retr_time = 1/int(note.split(":")[1])*tpb
     return list([__retr_note,__retr_time])
 
-def transfer_midi(variation,out_path,octave):
+def transfer_midi(variation,out_path):
     __time = 0
     #__tempo = mido.bpm2tempo(bpm)
-    __octave = octave
+    #__octave = octave
 
     ticks_per_beat = 960
 
@@ -26,7 +27,7 @@ def transfer_midi(variation,out_path,octave):
 
     for x in variation:
         __velocity = random.sample(range(85,110),1)[0]
-        __tmp = convert_midi(x,__octave,ticks_per_beat)
+        __tmp = convert_midi(x,ticks_per_beat)
         __note = __tmp[0]
         __time = int(__tmp[1])
         
@@ -51,7 +52,7 @@ def main(args):
     TIME_Y = args[6]
     NUM_NOTES = args[7]
     OUT_PATH = args[8]
-    OCTAVE = args[9]
+    #OCTAVE = args[9]
     #BPM = args[10]
     
     __p = PitchSet(SCALE,KEY,PITCH_X,PITCH_Y).get_grid()
@@ -59,7 +60,7 @@ def main(args):
     __o = OrderSet(NUM_NOTES).get_order()
     __v = Variation(__o,__p,__t)
 
-    transfer_midi(__v.return_variation(),OUT_PATH,OCTAVE)
+    transfer_midi(__v.return_variation(),OUT_PATH)
 
     return __v.return_variation()
 
