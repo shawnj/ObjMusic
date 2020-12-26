@@ -135,6 +135,7 @@ class TimeValues:
 
     def __init__(self):
         self.tv = "One"
+        self.timeset = (2,4,2,4,2,4,2)
 
     def tvs(self):
         __tvs = {
@@ -151,6 +152,11 @@ class TimeValues:
         __tvs = [x for x in self.tvs().items() if self.tv in x]
 
         return dict(__tvs)[self.tv]
+    
+    def get_timeset(self,timeset):
+        self.timeset = eval(timeset)
+
+        return self.timeset
         
 class Notes:
 
@@ -211,6 +217,10 @@ class TimeSet:
 
     def get_grid(self):
         __timevalues = load_timevalues(self.timevalue)
+        return populate_grid(__timevalues,self.x,self.y)
+
+    def get_gridset(self):
+        __timevalues = load_timeset(self.timevalue)
         return populate_grid(__timevalues,self.x,self.y)
 
 class OrderSet:
@@ -298,9 +308,14 @@ def load_notes(scale, rootnote):
 
     return convert_notes
 
+# Not currently using
 def load_timevalues(timevalue):
     __tv = TimeValues().get_tv(timevalue)
     __loaded_tv = __tv
 
     return __loaded_tv
 
+def load_timeset(timeset):
+    __tv = TimeValues().get_timeset(timeset)
+
+    return __tv

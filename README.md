@@ -20,7 +20,9 @@ KEY = "C"
 SCALE = "Major"
 PITCH_X = 4
 PITCH_Y = 5 
-TIMESET = "One"
+## Requires comma separated string with 7 int's -- 
+## Int's representing musical notation -- 1,2,4,8,16
+TIMESET = "2,4,2,4,8,16,2"
 TIME_X = 3
 TIME_Y = 4
 NUMBER_OF_NOTES = 10
