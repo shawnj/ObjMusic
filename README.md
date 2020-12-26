@@ -25,7 +25,6 @@ TIME_X = 3
 TIME_Y = 4
 NUMBER_OF_NOTES = 10
 OUTPUT_FILE = "path.mid"
-OCTAVE = 4
 
 input_list = [
     KEY,
@@ -37,7 +36,6 @@ input_list = [
     TIME_Y,
     NUMBER_OF_NOTES,
     OUTPUT_FILE,
-    OCTAVE
 ]
 
 # Returns midi file and prints output from selection

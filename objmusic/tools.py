@@ -220,7 +220,7 @@ class OrderSet:
 
     def get_order(self):
         __num_notes = self.num_notes
-        __r = random.sample(range(0,63), __num_notes)
+        __r = random.sample(range(0,63), int(__num_notes))
         return __r
 
 class Variation:
@@ -253,12 +253,12 @@ def populate_grid(item_list,x,y):
             if i == 0:
                 inc2 = inc
             __l.insert(index,item_list[inc])
-            inc = (inc + x - 1) % 7
+            inc = (inc + int(x) - 1) % 7
             index += 1
 
         index += 1
         __l.insert(index,item_list[inc2])
-        inc = (inc + y -1) % 7
+        inc = (inc + int(y) -1) % 7
 
     return __l
     
